@@ -27,9 +27,12 @@ std::vector<std::string> generateLegalMoves(const Board &board, char piece, int 
 }
 
 
-std::vector<std::string> generatePawnMoves(const Board &board, int posX, int posY){
+std::vector<std::string> generatePawnMoves(const Board &board, char color, int posX, int posY){
 	//TODO:
 	std::vector<std::string> moveArray = {};
+	int direction = (color == 'w') ? 1 : -1;
+	int starting_row = (color == 'w') ? 1 : 6; //assuming 0 indexed position 
+
 
 	return moveArray;
 } 

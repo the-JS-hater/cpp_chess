@@ -5,6 +5,17 @@
 
 #include <string>
 
+enum Notation {
+	A,
+	B,
+	C,
+	D,
+	E,
+	F,
+	G,
+	H
+};
+
 struct Piece {
 	char name;
 	char color;
