@@ -3,7 +3,9 @@
 
 #define BOARD_SIZE 8
 
-enum Piece {
+#include <string>
+
+enum Pieces {
 	EMPTY,
 	PAWN,
 	KNIGHT,
@@ -13,8 +15,16 @@ enum Piece {
 	KING,
 };
 
+struct Piece {
+	std::string name;
+	char color;
+	
+	Piece(std::string name, char color) : name{name}, color{color}{};
+};
+
+// TODO: fix data representation to use Piece struct instead 
 struct Board {
-	Piece board[BOARD_SIZE][BOARD_SIZE] = {
+	Pieces board[BOARD_SIZE][BOARD_SIZE] = {
 		{ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK},
 		{PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
 		{EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
