@@ -6,7 +6,7 @@
 #include <string>
 
 enum Pieces {
-	EMPTY,
+	E,
 	PAWN,
 	KNIGHT,
 	BISHOP,
@@ -16,23 +16,23 @@ enum Pieces {
 };
 
 struct Piece {
-	std::string name;
+	char name;
 	char color;
 	
-	Piece(std::string name, char color) : name{name}, color{color}{};
+	Piece(char name, char color) : name{name}, color{color}{};
 };
 
 // TODO: fix data representation to use Piece struct instead 
 struct Board {
-	Pieces board[BOARD_SIZE][BOARD_SIZE] = {
-		{ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK},
-		{PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
-		{EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
-		{EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
-		{EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
-		{EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
-		{PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
-		{ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK}
+	Piece board[BOARD_SIZE][BOARD_SIZE] = {
+		{Piece('R', 'w'), Piece('N', 'w'), Piece('B', 'w'), Piece('Q', 'w'), Piece('K', 'w'), Piece('B', 'w'), Piece('N', 'w'), Piece('R', 'w')},
+		{Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w')},
+		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b')},
+		{Piece('R', 'b'), Piece('N', 'b'), Piece('B', 'b'), Piece('Q', 'b'), Piece('K', 'b'), Piece('B', 'b'), Piece('N', 'b'), Piece('R', 'b')}
 	};
 };
 
