@@ -11,7 +11,7 @@ LIBS=-lraylib
 _DEPS = board.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o board.o
+_OBJ = main.o board.o moveGen.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 

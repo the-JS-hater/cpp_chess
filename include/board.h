@@ -5,16 +5,6 @@
 
 #include <string>
 
-enum Pieces {
-	E,
-	PAWN,
-	KNIGHT,
-	BISHOP,
-	ROOK,
-	QUEEN,
-	KING,
-};
-
 struct Piece {
 	char name;
 	char color;
