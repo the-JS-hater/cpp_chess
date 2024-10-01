@@ -17,5 +17,6 @@ std::vector<Position> generateLegalMoves(const Board &board, char piece, int pos
 
 std::vector<Position> generatePawnMoves(const Board &board, char color, int posX, int posY);
 
+std::vector<Position> generateKnightMoves(const Board &board, char color, int posX, int posY);
 
 #endif

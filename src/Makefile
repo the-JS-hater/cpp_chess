@@ -8,7 +8,7 @@ LDIR =../lib
 
 LIBS=-lraylib
 
-_DEPS = board.h
+_DEPS = board.h moveGen.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 _OBJ = main.o board.o moveGen.o

@@ -42,5 +42,6 @@ void printBoard(Board &board);
 
 bool isFree(const Board &board, int posX, int posY);
 
+bool outOfBounds(int posX, int posY);
 
 #endif

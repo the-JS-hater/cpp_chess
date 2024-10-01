@@ -10,6 +10,10 @@ bool isFree(const Board &board, int posX, int posY) {
 	return board.board[posY][posX].name == 'E';
 }
 
+bool outOfBounds(int posX, int posY){
+	return (posX >= 0 && posX <= 7) && (posY >= 0 && posY <= 7);
+}
+
 void printBoard(Board &board) {
 	std::string output_string = "";
 	
