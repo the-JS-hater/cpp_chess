@@ -40,8 +40,25 @@ std::vector<Position> generatePawnMoves(const Board &board, char color, int posX
 	if (posY == starting_row && isFree(board, posX, posY + (2 * direction))) {
 		moveArray.push_back(Position(posX, posY + (2 * direction)));
 	}
-		
-	//TODO: adda enPassant
+	//TODO: filter moves outside the board
+	//TODO: add enPassant
 
 	return moveArray;
-} 
+}
+
+std::vector<Position> generateKnightMoves(const Board &board, char color, int posX, int posY){
+	std::vector<Position> moveArray = {};
+	std::vector<Position> candidateMoves = {};
+	candidateMoves.push_back(Position(posX -1, posY -2));
+	candidateMoves.push_back(Position(posX -2, posY -1));
+	candidateMoves.push_back(Position(posX -2, posY +1));
+	candidateMoves.push_back(Position(posX -1, posY +2));
+	candidateMoves.push_back(Position(posX +1, posY -2));
+	candidateMoves.push_back(Position(posX +2, posY -1));
+	candidateMoves.push_back(Position(posX +2, posY +1));
+	candidateMoves.push_back(Position(posX +1, posY +2));
+	
+	//TODO: filter illegal moves
+	return moveArray;
+}
+
