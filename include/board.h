@@ -23,7 +23,6 @@ struct Piece {
 	Piece(char name, char color) : name{name}, color{color}{};
 };
 
-// TODO: fix data representation to use Piece struct instead 
 struct Board {
 	Piece board[BOARD_SIZE][BOARD_SIZE] = {
 		{Piece('R', 'w'), Piece('N', 'w'), Piece('B', 'w'), Piece('Q', 'w'), Piece('K', 'w'), Piece('B', 'w'), Piece('N', 'w'), Piece('R', 'w')},
@@ -38,8 +37,10 @@ struct Board {
 };
 
 Board newBoard();
+
 void printBoard(Board &board);
 
+bool isFree(const Board &board, int posX, int posY);
 
 
 #endif

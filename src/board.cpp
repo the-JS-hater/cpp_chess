@@ -6,6 +6,10 @@ Board newBoard() {
 	return Board();
 }
 
+bool isFree(const Board &board, int posX, int posY) {
+	return board.board[posY][posX].name == 'E';
+}
+
 void printBoard(Board &board) {
 	std::string output_string = "";
 	
