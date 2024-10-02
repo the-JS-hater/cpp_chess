@@ -28,3 +28,10 @@ void printBoard(Board &board) {
 	printf("%s\n", output_string.c_str());
 }
 
+// WARN: movePiece() does NOT check legality of moves
+// only legal moves should be generated and passed in
+void movePiece(Board &board, int oldX, int oldY, int newX, int newY){
+	board.board[newY][newX] = board.board[oldY][oldX];
+	board.board[oldY][oldX] = Piece('E', '_');
+}
+

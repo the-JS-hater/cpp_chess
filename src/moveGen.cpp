@@ -2,6 +2,7 @@
 #include "../include/board.h"
 #include <vector>
 
+
 std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int posX, int posY) {
 	// TODO:
 	std::vector<Position> moveArray = {};
@@ -14,6 +15,7 @@ std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int po
 			return generateKnightMoves(board, piece.color, posX, posY);
 			break;
 		case 'B':
+			return generateBishopMoves(board, piece.color, posX, posY);
 			break;
 		case 'R':
 			break;
@@ -44,14 +46,15 @@ std::vector<Position> generatePawnMoves(const Board &board, char color, int posX
 	if (posY == starting_row && isFree(board, posX, posY + (2 * direction))) {
 		moveArray.push_back(Position(posX, posY + (2 * direction)));
 	}
-	//TODO: filter illegal captures
-	//TODO: filter moves outside the board
+	//TODO: add legal captures
 	//TODO: add enPassant
 
 	return moveArray;
 }
 
+
 std::vector<Position> generateKnightMoves(const Board &board, char color, int posX, int posY){
+	//TODO:
 	std::vector<Position> moveArray = {};
 	std::vector<Position> candidateMoves = {};
 	candidateMoves.push_back(Position(posX -1, posY -2));
@@ -63,8 +66,6 @@ std::vector<Position> generateKnightMoves(const Board &board, char color, int po
 	candidateMoves.push_back(Position(posX +2, posY +1));
 	candidateMoves.push_back(Position(posX +1, posY +2));
 	
-	//TODO: filter illegal moves
-	
 	for (const Position candidateMove : candidateMoves) {
 		if (!outOfBounds(candidateMove.x, candidateMove.y)) {
 			moveArray.push_back(candidateMove);
@@ -72,6 +73,50 @@ std::vector<Position> generateKnightMoves(const Board &board, char color, int po
 	}
 	
 	//TODO: filter illegal captures
+	return moveArray;
+}
+
+
+std::vector<Position> generateBishopMoves(const Board &board, char color, int posX, int posY){
+	//TODO: 
+	std::vector<Position> moveArray = {};
+
+	for (int y = posY; y <= 7; y++){
+		for (int x = posX; x <= 7; x++){
+			if (isFree(board, posX, posY)){
+				moveArray.push_back(Position(x, y));
+			}
+			//TODO: add legal captures
+		}
+	}	
+
+	for (int y = posY; y >= 0; y--){
+		for (int x = posX; x >= 0; x--){
+			if (isFree(board, posX, posY)){
+				moveArray.push_back(Position(x, y));
+			}
+			//TODO: add legal captures
+		}
+	}	
+	
+	for (int y = posY; y <= 7; y++){
+		for (int x = posX; x >= 0; x--){
+			if (isFree(board, posX, posY)){
+				moveArray.push_back(Position(x, y));
+			}
+			//TODO: add legal captures
+		}
+	}	
+
+	for (int y = posY; y >= 0; y--){
+		for (int x = posX; x <= 7; x++){
+			if (isFree(board, posX, posY)){
+				moveArray.push_back(Position(x, y));
+			}
+			//TODO: add legal captures
+		}
+	}
+
 	return moveArray;
 }
 

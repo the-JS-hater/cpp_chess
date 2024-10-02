@@ -5,16 +5,6 @@
 
 #include <string>
 
-enum Notation {
-	A,
-	B,
-	C,
-	D,
-	E,
-	F,
-	G,
-	H
-};
 
 struct Piece {
 	char name;
@@ -43,5 +33,8 @@ void printBoard(Board &board);
 bool isFree(const Board &board, int posX, int posY);
 
 bool outOfBounds(int posX, int posY);
+
+void movePiece(Board &board, int oldX, int oldY, int newX, int newY);
+
 
 #endif

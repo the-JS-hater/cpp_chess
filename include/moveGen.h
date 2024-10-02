@@ -19,4 +19,6 @@ std::vector<Position> generatePawnMoves(const Board &board, char color, int posX
 
 std::vector<Position> generateKnightMoves(const Board &board, char color, int posX, int posY);
 
+std::vector<Position> generateBishopMoves(const Board &board, char color, int posX, int posY);
+
 #endif
