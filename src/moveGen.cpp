@@ -1,12 +1,11 @@
 #include "../include/moveGen.h"
 #include "../include/board.h"
 #include <vector>
-
+#include <stdio.h>
+#include <cstdlib>
 
 std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int posX, int posY) {
 	// TODO:
-	std::vector<Position> moveArray = {};
-
 	switch (piece.name) {
 		case 'P':
 			return generatePawnMoves(board, piece.color, posX, posY);
@@ -18,14 +17,21 @@ std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int po
 			return generateBishopMoves(board, piece.color, posX, posY);
 			break;
 		case 'R':
+			return generateRookMoves(board, piece.color, posX, posY);
 			break;
 		case 'Q':
+			return generateQueenMoves(board, piece.color, posX, posY);
 			break;
 		case 'K':
 			break;
+		default:
+			//NOTE: SHOULD NEVER BE REACHED
+			printf("ILLEGAL PIECE DISCOVERED, CRASHING IMMIDIETLEY \n");
+			abort();
+			break;
 	}
-
-	return moveArray;
+	// NOTE: this is only here to make the LSP shut up
+	return std::vector<Position> {};
 }
 
 
@@ -118,5 +124,52 @@ std::vector<Position> generateBishopMoves(const Board &board, char color, int po
 	}
 
 	return moveArray;
+}
+
+
+std::vector<Position> generateRookMoves(const Board &board, char color, int posX, int posY){
+	std::vector<Position> moveArray = {};
+	//TODO: add legal captures
+	int smallest_x = 0, smallest_y = 0, largest_x = 7, largest_y = 7;
+	
+	for (int x = posX; x <= 7; x++){
+		if (!isFree(board, x, posY)){
+			break;
+		}
+		moveArray.push_back(Position(x, posY));
+	}
+
+	for (int x = posX; x >= 0; x--){
+		if (!isFree(board, x, posY)){
+			break;
+		}
+		moveArray.push_back(Position(x, posY));
+	}
+
+	for (int y = posY; y <= 0; y++){
+		if (!isFree(board, posX, y)){
+			break;
+		}
+		moveArray.push_back(Position(posX, y));
+	}
+	
+	for (int y = posY; y >= 0; y--){
+		if (!isFree(board, posX, y)){
+			break;
+		}
+		moveArray.push_back(Position(posX, y));
+	}
+	return moveArray;
+}
+
+
+std::vector<Position> generateQueenMoves(const Board &board, char color, int posX, int posY) {
+	std::vector<Position> diagonalMoves = generateBishopMoves(board, color, posX, posY);
+	std::vector<Position> straightMoves = generateRookMoves(board, color, posX, posY);
+	
+	//Howto extend one vec with another, because c++ is a beutiful language (sarcasm)
+	diagonalMoves.insert(std::end(diagonalMoves), std::begin(straightMoves), std::end(straightMoves));
+
+	return diagonalMoves;
 }
 
