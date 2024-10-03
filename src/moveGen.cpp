@@ -23,6 +23,7 @@ std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int po
 			return generateQueenMoves(board, piece.color, posX, posY);
 			break;
 		case 'K':
+			return generateKingMoves(board, piece.color, posX, posY);
 			break;
 		default:
 			//NOTE: SHOULD NEVER BE REACHED
@@ -173,3 +174,21 @@ std::vector<Position> generateQueenMoves(const Board &board, char color, int pos
 	return diagonalMoves;
 }
 
+
+std::vector<Position> generateKingMoves(const Board &board, char color, int posX, int posY){
+	//TODO:
+	std::vector<Position> moveArray = {};
+	
+	//TODO: filter legal and illegal captures
+	//TODO: filter moving into check
+	//TODO: add castling
+	for (int x = posX - 1; x <= posX + 1; x++){
+		for (int y = posY - 1; y <= posY + 1; y++) {
+			if (!outOfBounds(x, y)){
+				moveArray.push_back(Position(x, y));
+			}
+		}
+	}
+
+	return moveArray;
+}
