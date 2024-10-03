@@ -28,6 +28,10 @@ void printBoard(Board &board) {
 	printf("%s\n", output_string.c_str());
 }
 
+bool isCapturable(const Board &board, char color, int posX, int posY){
+	return (board.board[posY][posX].color != color);
+}
+
 // WARN: movePiece() does NOT check legality of moves
 // only legal moves should be generated and passed in
 void movePiece(Board &board, int oldX, int oldY, int newX, int newY){

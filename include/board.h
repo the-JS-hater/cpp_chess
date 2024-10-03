@@ -36,5 +36,6 @@ bool outOfBounds(int posX, int posY);
 
 void movePiece(Board &board, int oldX, int oldY, int newX, int newY);
 
+bool isCapturable(const Board &board, char color, int posX, int posY);
 
 #endif

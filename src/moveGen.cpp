@@ -31,7 +31,7 @@ std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int po
 			abort();
 			break;
 	}
-	// NOTE: this is only here to make the LSP shut up
+	// NOTE: this is only here to make the LSP/Compiler shut up
 	return std::vector<Position> {};
 }
 
@@ -53,7 +53,15 @@ std::vector<Position> generatePawnMoves(const Board &board, char color, int posX
 	if (posY == starting_row && isFree(board, posX, posY + (2 * direction))) {
 		moveArray.push_back(Position(posX, posY + (2 * direction)));
 	}
-	//TODO: add legal captures
+
+	std::vector<Position> candidateCaptures = {Position(posX - 1, posY + direction), Position(posX + 1, posY + direction)};
+
+	for (Position capture : candidateCaptures){
+		if (!outOfBounds(capture.x, capture.y) && isCapturable(board, color, capture.x, capture.y)){
+			moveArray.push_back(capture);
+		}
+	}
+
 	//TODO: add enPassant
 
 	return moveArray;
@@ -61,7 +69,6 @@ std::vector<Position> generatePawnMoves(const Board &board, char color, int posX
 
 
 std::vector<Position> generateKnightMoves(const Board &board, char color, int posX, int posY){
-	//TODO:
 	std::vector<Position> moveArray = {};
 	std::vector<Position> candidateMoves = {};
 	candidateMoves.push_back(Position(posX -1, posY -2));
@@ -74,26 +81,34 @@ std::vector<Position> generateKnightMoves(const Board &board, char color, int po
 	candidateMoves.push_back(Position(posX +1, posY +2));
 	
 	for (const Position candidateMove : candidateMoves) {
-		if (!outOfBounds(candidateMove.x, candidateMove.y)) {
-			moveArray.push_back(candidateMove);
+		if (outOfBounds(candidateMove.x, candidateMove.y)) {
+			continue;
 		}
+
+		if (!isFree(board, candidateMove.x, candidateMove.y) && !isCapturable(board, color, candidateMove.x, candidateMove.y)){
+			continue;
+		}
+
+		moveArray.push_back(candidateMove);
 	}
 	
-	//TODO: filter illegal captures
 	return moveArray;
 }
 
 
 std::vector<Position> generateBishopMoves(const Board &board, char color, int posX, int posY){
-	//TODO: 
 	std::vector<Position> moveArray = {};
-
+	//TODO: this function should be streamlined. Just too lazy to think atm
 	for (int y = posY; y <= 7; y++){
 		for (int x = posX; x <= 7; x++){
 			if (isFree(board, posX, posY)){
 				moveArray.push_back(Position(x, y));
+				continue;
 			}
-			//TODO: add legal captures
+
+			if (isCapturable(board, color, x, y)){
+				moveArray.push_back(Position(x, y));
+			}
 		}
 	}	
 
@@ -101,8 +116,12 @@ std::vector<Position> generateBishopMoves(const Board &board, char color, int po
 		for (int x = posX; x >= 0; x--){
 			if (isFree(board, posX, posY)){
 				moveArray.push_back(Position(x, y));
+				continue;
 			}
-			//TODO: add legal captures
+
+			if (isCapturable(board, color, x, y)){
+				moveArray.push_back(Position(x, y));
+			}
 		}
 	}	
 	
@@ -110,8 +129,12 @@ std::vector<Position> generateBishopMoves(const Board &board, char color, int po
 		for (int x = posX; x >= 0; x--){
 			if (isFree(board, posX, posY)){
 				moveArray.push_back(Position(x, y));
+				continue;
 			}
-			//TODO: add legal captures
+
+			if (isCapturable(board, color, x, y)){
+				moveArray.push_back(Position(x, y));
+			}
 		}
 	}	
 
@@ -119,8 +142,12 @@ std::vector<Position> generateBishopMoves(const Board &board, char color, int po
 		for (int x = posX; x <= 7; x++){
 			if (isFree(board, posX, posY)){
 				moveArray.push_back(Position(x, y));
+				continue;
 			}
-			//TODO: add legal captures
+
+			if (isCapturable(board, color, x, y)){
+				moveArray.push_back(Position(x, y));
+			}
 		}
 	}
 
@@ -130,11 +157,14 @@ std::vector<Position> generateBishopMoves(const Board &board, char color, int po
 
 std::vector<Position> generateRookMoves(const Board &board, char color, int posX, int posY){
 	std::vector<Position> moveArray = {};
-	//TODO: add legal captures
+	//TODO: this function should be streamlined, just too lazy to think atm
 	int smallest_x = 0, smallest_y = 0, largest_x = 7, largest_y = 7;
 	
 	for (int x = posX; x <= 7; x++){
 		if (!isFree(board, x, posY)){
+			if (isCapturable(board, color, x, posY)){
+				moveArray.push_back(Position(x, posY));
+			}
 			break;
 		}
 		moveArray.push_back(Position(x, posY));
@@ -142,6 +172,9 @@ std::vector<Position> generateRookMoves(const Board &board, char color, int posX
 
 	for (int x = posX; x >= 0; x--){
 		if (!isFree(board, x, posY)){
+			if (isCapturable(board, color, x, posY)){
+				moveArray.push_back(Position(x, posY));
+			}
 			break;
 		}
 		moveArray.push_back(Position(x, posY));
@@ -149,6 +182,9 @@ std::vector<Position> generateRookMoves(const Board &board, char color, int posX
 
 	for (int y = posY; y <= 0; y++){
 		if (!isFree(board, posX, y)){
+			if (isCapturable(board, color, posX, y)){
+				moveArray.push_back(Position(posX, y));
+			}
 			break;
 		}
 		moveArray.push_back(Position(posX, y));
@@ -156,6 +192,9 @@ std::vector<Position> generateRookMoves(const Board &board, char color, int posX
 	
 	for (int y = posY; y >= 0; y--){
 		if (!isFree(board, posX, y)){
+			if (isCapturable(board, color, posX, y)){
+				moveArray.push_back(Position(posX, y));
+			}
 			break;
 		}
 		moveArray.push_back(Position(posX, y));
