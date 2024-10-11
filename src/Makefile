@@ -8,10 +8,10 @@ LDIR =../lib
 
 LIBS=-lraylib
 
-_DEPS = board.h moveGen.h
+_DEPS = board.h moveGen.h rules.h gui.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o board.o moveGen.o
+_OBJ = main.o board.o moveGen.o rules.o gui.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 

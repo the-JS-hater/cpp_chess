@@ -221,6 +221,7 @@ std::vector<Position> generateKingMoves(const Board &board, char color, int posX
 	//TODO: filter legal and illegal captures
 	//TODO: filter moving into check
 	//TODO: add castling
+	//TODO: filter moving into check (include rules.h)
 	for (int x = posX - 1; x <= posX + 1; x++){
 		for (int y = posY - 1; y <= posY + 1; y++) {
 			if (!outOfBounds(x, y)){
