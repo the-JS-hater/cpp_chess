@@ -228,9 +228,7 @@ std::vector<Position> generateKingMoves(const Board &board, char color, int posX
 				continue;
 			}
 			
-			Board tempBoard = board;
-			movePiece(tempBoard, posX, posY, x, y);
-			if (isCheck(color, tempBoard)){
+			if (isCheck(color, x, y, board)){
 				continue;
 			}
 
