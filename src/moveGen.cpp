@@ -1,11 +1,11 @@
 #include "../include/moveGen.h"
 #include "../include/board.h"
+#include "../include/rules.h"
 #include <vector>
 #include <stdio.h>
 #include <cstdlib>
 
 std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int posX, int posY) {
-	// TODO:
 	switch (piece.name) {
 		case 'P':
 			return generatePawnMoves(board, piece.color, posX, posY);
@@ -218,15 +218,23 @@ std::vector<Position> generateKingMoves(const Board &board, char color, int posX
 	//TODO:
 	std::vector<Position> moveArray = {};
 	
-	//TODO: filter legal and illegal captures
-	//TODO: filter moving into check
 	//TODO: add castling
-	//TODO: filter moving into check (include rules.h)
 	for (int x = posX - 1; x <= posX + 1; x++){
 		for (int y = posY - 1; y <= posY + 1; y++) {
-			if (!outOfBounds(x, y)){
-				moveArray.push_back(Position(x, y));
+			if (outOfBounds(x, y)){
+				continue;
 			}
+			if (!isCapturable(board, color, posX, posY)){
+				continue;
+			}
+			
+			Board tempBoard = board;
+			movePiece(tempBoard, posX, posY, x, y);
+			if (isCheck(color, tempBoard)){
+				continue;
+			}
+
+			moveArray.push_back(Position(x, y));
 		}
 	}
 
