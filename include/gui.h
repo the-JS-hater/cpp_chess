@@ -5,5 +5,6 @@
 
 void initGUI(const int& windowSize);
 void renderBoard(const Board&);
+void cleanUp();
 
 #endif
