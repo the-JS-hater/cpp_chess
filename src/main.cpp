@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <vector>
 #include "../include/board.h"
-#include "../include/moveGen.h"
+#include "../include/gui.h"
+#include <raylib.h>
 
 int main() {
 	
@@ -9,5 +8,14 @@ int main() {
 	
 	printBoard(testBoard);
 	
+	initGUI(420);
+	
+	while (!WindowShouldClose()) {
+		BeginDrawing();
+			//TODO:
+		EndDrawing();
+	}
+	
+	CloseWindow();
 	return 0;
 }

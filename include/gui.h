@@ -3,7 +3,7 @@
 
 #include "board.h"
 
-void initGUI();
+void initGUI(const int& windowSize);
 void renderBoard(const Board&);
 
 #endif
