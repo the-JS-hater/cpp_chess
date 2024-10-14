@@ -35,7 +35,35 @@ bool isCapturable(const Board &board, char color, int posX, int posY){
 // WARN: movePiece() does NOT check legality of moves
 // only legal moves should be generated and passed in
 void movePiece(Board &board, int oldX, int oldY, int newX, int newY){
-	board.board[newY][newX] = board.board[oldY][oldX];
+	const Piece& piece = board.board[oldY][oldX];
+	if (piece.name == 'K'){
+		if (piece.color == 'w'){
+			board.wShortCastle = false;
+			board.wLongCastle = false;
+		} else {
+			board.bShortCastle = false;
+			board.bLongCastle = false;
+		}
+		//TODO: check IF king is currently castling
+		// if so, do it and return
+	}
+	if (piece.name == 'R'){
+		bool white = piece.color == 'w';
+		if (white && oldX == 0){
+			board.wLongCastle = false;
+		}
+		if (white && oldX == 7){
+			board.wShortCastle = false;
+		}
+		if (!white && oldX == 0){
+			board.bLongCastle = false;
+		}
+		if (!white && oldX == 7){
+			board.bShortCastle = false;
+		}
+	}
+
+	board.board[newY][newX] = piece;
 	board.board[oldY][oldX] = Piece('E', '_');
 }
 

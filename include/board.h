@@ -21,6 +21,11 @@ struct Piece {
 };
 
 struct Board {
+	bool wShortCastle = true;
+	bool wLongCastle = true;
+	bool bShortCastle = true;
+	bool bLongCastle = true;
+
 	Piece board[BOARD_SIZE][BOARD_SIZE] = {
 		{Piece('R', 'b'), Piece('N', 'b'), Piece('B', 'b'), Piece('Q', 'b'), Piece('K', 'b'), Piece('B', 'b'), Piece('N', 'b'), Piece('R', 'b')},
 		{Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b')},
