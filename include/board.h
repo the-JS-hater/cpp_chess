@@ -3,6 +3,13 @@
 
 #define BOARD_SIZE 8
 
+/* This is used by the arbiter to validate legality of bot moves.
+ * It uses the board representation in board.h. This is NOT an efficient
+ * board/move representation. Your bot is allowed to use it by including
+ * moveGen.h and board.h, but for optimized bots this is not ideal. The API is
+ * designed to allow you to create your own, more efficient board
+ * representation
+ */
 #include <string>
 
 

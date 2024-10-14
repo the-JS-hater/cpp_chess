@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <cstdlib>
 
+
 std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int posX, int posY) {
 	switch (piece.name) {
 		case 'P':
@@ -31,8 +32,6 @@ std::vector<Position> generateLegalMoves(const Board &board, Piece piece, int po
 			abort();
 			break;
 	}
-	// NOTE: this is only here to make the LSP/Compiler shut up
-	return std::vector<Position> {};
 }
 
 

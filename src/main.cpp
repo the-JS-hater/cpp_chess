@@ -16,7 +16,7 @@ int main() {
 		EndDrawing();
 	}
 	
-	//cleanUp();
+	cleanUp();
 	CloseWindow();
 	return 0;
 }
