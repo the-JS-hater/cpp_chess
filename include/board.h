@@ -22,14 +22,14 @@ struct Piece {
 
 struct Board {
 	Piece board[BOARD_SIZE][BOARD_SIZE] = {
-		{Piece('R', 'w'), Piece('N', 'w'), Piece('B', 'w'), Piece('Q', 'w'), Piece('K', 'w'), Piece('B', 'w'), Piece('N', 'w'), Piece('R', 'w')},
-		{Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w')},
-		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
-		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
-		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
-		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('R', 'b'), Piece('N', 'b'), Piece('B', 'b'), Piece('Q', 'b'), Piece('K', 'b'), Piece('B', 'b'), Piece('N', 'b'), Piece('R', 'b')},
 		{Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b'), Piece('P', 'b')},
-		{Piece('R', 'b'), Piece('N', 'b'), Piece('B', 'b'), Piece('Q', 'b'), Piece('K', 'b'), Piece('B', 'b'), Piece('N', 'b'), Piece('R', 'b')}
+		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('E', '_'),Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_'), Piece('E', '_')},
+		{Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w'), Piece('P', 'w')},
+		{Piece('R', 'w'), Piece('N', 'w'), Piece('B', 'w'), Piece('Q', 'w'), Piece('K', 'w'), Piece('B', 'w'), Piece('N', 'w'), Piece('R', 'w')}
 	};
 };
 
