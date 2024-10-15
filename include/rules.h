@@ -10,10 +10,12 @@
  */
 
 #include "board.h"
+#include "moveGen.h"
 
 bool isCheck(char color, int psoX, int posY, const Board& board);
 
 bool isCheckmate(char color, const Board& board);
 
+bool legalMove(const Board& board, const Piece& piece, const Position& move);
 
 #endif

@@ -7,7 +7,7 @@ int main() {
 	
 	printBoard(testBoard);
 	
-	initGUI(620);
+	initGUI(820);
 	
 	while (!WindowShouldClose()) {
 		BeginDrawing();
